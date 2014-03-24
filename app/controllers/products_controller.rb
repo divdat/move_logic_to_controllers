@@ -1,4 +1,5 @@
 class ProductsController < ApplicationController
+
   def index
     @products = Product.includes(:user).all
     respond_to do |format|
@@ -6,6 +7,11 @@ class ProductsController < ApplicationController
       format.json {render :json => @products}
     end
   end
+
+  def new
+    @product = Product.new
+  end
+
   def create
     @product = Product.new(params[:product])
     respond_to do |format|
@@ -18,4 +24,5 @@ class ProductsController < ApplicationController
       end
     end
   end
+
 end
